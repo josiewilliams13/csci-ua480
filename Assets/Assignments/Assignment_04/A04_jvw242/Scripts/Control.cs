@@ -4,7 +4,7 @@ using UnityEngine;
 
 //This is based off the code implemented in class.
 
-namespace A04_jvw242
+namespace A04_jvw2421
 {
     public class PlayerController : MonoBehaviour
     {
