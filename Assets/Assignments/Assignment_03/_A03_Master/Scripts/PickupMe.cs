@@ -35,25 +35,31 @@ namespace A03Examples
          * Handle the event when the user clicks the button while 
          * gaze is on this object.  Toggle grabbed state.
          */
+
+        //Prop. of rb called velocity. if collision is detected, set velocity to zero.
         public void PickupOrDrop()
         {
             if (grabbed)
             {  // now drop it
-                //transform.parent = null;  // release the object
+                transform.parent = null;  // release the object
                 grabbed = false;
                 myRb.useGravity = true;  //    .useGravity = true;
-                //strobe.trigger = false;
                 if (downPointer != null)
                     downPointer.DontDraw();
             }
             else
             {   // pick it up:
                 // make it move with gaze, keeping same distance from camera
-                //transform.parent = Camera.main.transform;  // attach object to camera
+                //on collision enter --> collision.
+                transform.parent = Camera.main.transform;  // attach object to camera
                 grabbed = true;
-                //strobe.trigger = true;   // turn on color strobe so we know we have it
                 myRb.useGravity = false; //  .useGravity = false;
             }
+        }
+
+        private void OnCollisionEnter(Collision collision)
+        {
+            transform.parent = null;
         }
     }
 }
